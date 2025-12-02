@@ -2,6 +2,14 @@ import pygame
 
 pygame.init()
 
+
+def blit_text(txt, screen):
+    if txt[2]:
+        rect = txt[0].get_rect(center=txt[1])
+    else:
+        rect = txt[0].get_rect(topleft=txt[1])
+    screen.blit(txt[0], rect)
+
 # button class
 class Button(pygame.sprite.Sprite):
     def __init__(self, x, y, img, click_img, toggle = False):
