@@ -16,6 +16,8 @@ testButton = database.Button(30, 30, pygame.image.load("assets/button1.png"), py
 
 font = pygame.font.SysFont("Arial", 40)
 
+click = pygame.mixer.Sound("assets/click.wav")
+
 buttons = [
     database.Button(100, 200, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png")),
     database.Button(100, 500, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png")),
@@ -41,8 +43,10 @@ text = [
 
 def update():
     if buttons[0].click():
+        click.play()
         return 1
     if buttons[1].click():
+        click.play()
         return 2
     return 0
 

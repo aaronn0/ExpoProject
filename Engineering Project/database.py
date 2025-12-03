@@ -12,7 +12,7 @@ def blit_text(txt, screen):
 
 # button class
 class Button(pygame.sprite.Sprite):
-    def __init__(self, x, y, img, click_img, toggle = False):
+    def __init__(self, x, y, img, click_img):
         super().__init__()
         self.display_image = img
         self.image = img
@@ -20,7 +20,6 @@ class Button(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.pressed = False
-        self.toggle = toggle
 
     def click(self):
         mouse = pygame.mouse.get_pressed()

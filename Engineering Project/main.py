@@ -5,7 +5,8 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
-import game
+import phase_one
+import phase_two
 import learn
 import menu
 import end
@@ -33,15 +34,18 @@ while running:
     if num_states == 0:
         num_states = menu.update()
         menu.draw()
-    if num_states == 1:
-        num_states = game.update()
-        game.draw()
-    if num_states == 2:
+    elif num_states == 1:
+        num_states = phase_one.update()
+        phase_one.draw()
+    elif num_states == 2:
         num_states = learn.update()
         learn.draw()
-    if num_states == 3:
+    elif num_states == 3:
         num_states = end.update()
         end.draw()
+    elif num_states == 4:
+        num_states = phase_two.update()
+        phase_two.draw()
     # flip() the display to put your work on screen
     pygame.display.flip()
 
