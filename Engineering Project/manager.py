@@ -25,7 +25,7 @@ font = pygame.font.SysFont("Arial", 60)
 
 clock = pygame.time.Clock()
 
-num_states = 4
+num_states = 0
 
 while running:
     dt = clock.tick(60)/1000

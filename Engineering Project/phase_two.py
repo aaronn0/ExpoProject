@@ -300,7 +300,7 @@ def update(delta):
                     intro[0][0] = font.render("Continue", True, (0, 200, 0))
                     phase += 1
                     intro[3][0] = [
-                        font.render("For now, let's try to keep Grandpa stable by performing CPR on him.", True, (255, 0, 0)),
+                        font.render("For now, let's try to keep Grandpa stable by performing CPR on him.", True, (0, 0, 0)),
                         (50, 50),
                         False
                     ]
@@ -364,7 +364,9 @@ def update(delta):
         if countdown < 0:
             phase = 0
             wait = 0
-            target = random.random()
+            prev = target
+            while prev - 0.2 < target < prev + 0.2:
+                target = random.random()
             countdown = 3
             intro[6][3] =  [
                 bigfont.render(f"{int(countdown + 1)}", True, (255, 255, 255)),
