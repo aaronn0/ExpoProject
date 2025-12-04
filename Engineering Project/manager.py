@@ -1,6 +1,7 @@
+import random
+
 import pygame
 import os
-import time
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
@@ -8,7 +9,6 @@ os.chdir(dname)
 
 import phase_one
 import phase_two
-import learn
 import menu
 import end
 
@@ -17,6 +17,7 @@ pygame.init()
 screen = pygame.display.set_mode((1200, 800))
 
 pygame.display.set_caption("ENGINEERING PROJECT")
+
 
 running = True
 
@@ -42,9 +43,6 @@ while running:
     elif num_states == 1:
         num_states = phase_one.update()
         phase_one.draw()
-    elif num_states == 2:
-        num_states = learn.update()
-        learn.draw()
     elif num_states == 3:
         num_states = end.update()
         end.draw()
@@ -53,8 +51,6 @@ while running:
         phase_two.draw()
     # flip() the display to put your work on screen
     pygame.display.flip()
-
-      # limits FPS to 60
 
 pygame.quit()
 

@@ -16,14 +16,11 @@ font = pygame.font.Font("assets/font.ttf", 25)
 
 click = pygame.mixer.Sound("assets/click.wav")
 
-buttons = [
-    database.Button(100, 200, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png")),
-    database.Button(100, 500, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png")),
-]
+button = database.Button(100, 200, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png"))
 
 text = [
     [
-        font.render("Group 8 Milestone 3", True, (255, 255, 255)),
+        font.render("EXPO PROJECT", True, (255, 255, 255)),
         (600, 50),
         True
     ],
@@ -31,26 +28,17 @@ text = [
         font.render("Play Game", True, (255, 255, 255)),
         (200, 225),
         False
-    ],
-    [
-        font.render("Learn More About Heart Pumps", True, (255, 255, 255)),
-        (200, 535),
-        False
     ]
 ]
 
 def update():
-    if buttons[0].click():
+    if button.click():
         click.play()
         return 1
-    if buttons[1].click():
-        click.play()
-        return 2
     return 0
 
 def draw():
     screen.fill("black")
     for i in text:
         database.blit_text(i, screen)
-    for i in buttons:
-        screen.blit(i.display_image, i.rect)
+    screen.blit(button.display_image, button.rect)

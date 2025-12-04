@@ -42,4 +42,4 @@ class Timing(pygame.sprite.Sprite):
         self.rect.center = (x, y)
 
     def update(self, delta):
-        self.rect.centerx += delta * 20
+        self.rect.centerx += delta * 200
