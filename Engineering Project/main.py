@@ -1,5 +1,6 @@
 import pygame
 import os
+import time
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
@@ -21,14 +22,18 @@ running = True
 
 font = pygame.font.SysFont("Arial", 60)
 
-num_states = 0
+clock = pygame.time.Clock()
+
+num_states = 4
 
 while running:
+    dt = clock.tick(60)/1000
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
 
     # RENDER YOUR GAME HERE
     if num_states == 0:
@@ -44,7 +49,7 @@ while running:
         num_states = end.update()
         end.draw()
     elif num_states == 4:
-        num_states = phase_two.update()
+        num_states = phase_two.update(dt)
         phase_two.draw()
     # flip() the display to put your work on screen
     pygame.display.flip()

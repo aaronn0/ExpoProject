@@ -11,7 +11,7 @@ import database
 pygame.init()
 screen = pygame.display.set_mode((1200, 800))
 
-font = pygame.font.SysFont("Arial", 40)
+font = pygame.font.Font("assets/font.ttf", 25)
 phase = 0
 
 #create backgrounds
@@ -44,7 +44,7 @@ intro = [
     ],
     [
         font.render("Continue", True, (0, 200, 0)),
-        (160, 670),
+        (160, 690),
         False
     ]
 
@@ -143,17 +143,17 @@ paper_text = [
 
 top_text = [
     font.render("Let's see what's wrong with Grandpa.", True, (0, 0, 0)),
-    (50, 50),
+    (50, 70),
     False
 ]
 bot_text = [
     font.render("Compare each set of vitals and mark down if they are different.", True, (0, 0, 0)),
-    (50, 120),
+    (50, 140),
     False
 ]
 sub_text = [
         font.render("Submit", True, (0, 200, 0)),
-        (800, 45),
+        (820, 60),
         False
     ]
 
@@ -185,17 +185,17 @@ p2_button = [
 p2_text = [
     [
         font.render("Heart", True, (0, 200, 0)),
-        (180, 125),
+        (170, 145),
         False
     ],
     [
         font.render("Legs", True, (20, 80, 230)),
-        (440, 125),
+        (430, 145),
         False
     ],
     [
         font.render("Head", True, (200, 0, 0)),
-        (680, 125),
+        (670, 145),
         False
     ]
 ]
@@ -208,7 +208,6 @@ mark = pygame.image.load("assets/mark.png")
 
 hints = [
     "Maybe look at his heartrate?",
-    "That wouldn't explain his lack of breathing.",
     "His heartrate seems strangely low..."
 ]
 

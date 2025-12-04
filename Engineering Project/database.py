@@ -33,3 +33,13 @@ class Button(pygame.sprite.Sprite):
             if self.rect.collidepoint(pygame.mouse.get_pos()):
                 return True
         return False
+
+class Timing(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load("assets/timing.png")
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+    def update(self, delta):
+        self.rect.centerx += delta * 20

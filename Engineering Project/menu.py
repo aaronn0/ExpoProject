@@ -10,11 +10,9 @@ import database
 pygame.init()
 screen = pygame.display.set_mode((1200, 800))
 
-font = pygame.font.SysFont("Arial", 60)
-
 testButton = database.Button(30, 30, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png"))
 
-font = pygame.font.SysFont("Arial", 40)
+font = pygame.font.Font("assets/font.ttf", 25)
 
 click = pygame.mixer.Sound("assets/click.wav")
 
@@ -31,12 +29,12 @@ text = [
     ],
     [
         font.render("Play Game", True, (255, 255, 255)),
-        (200, 195),
+        (200, 225),
         False
     ],
     [
         font.render("Learn More About Heart Pumps", True, (255, 255, 255)),
-        (200, 505),
+        (200, 535),
         False
     ]
 ]
