@@ -1,12 +1,12 @@
-import random
-
 import pygame
 import os
 
+#sets current working directory to current file folder, allows this file to be run even if moving from computer to computer
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
+#imports all the other game phases
 import phase_one
 import phase_two
 import menu
@@ -15,42 +15,51 @@ import end
 # pygame setup
 pygame.init()
 screen = pygame.display.set_mode((1200, 800))
-
 pygame.display.set_caption("ENGINEERING PROJECT")
-
-
 running = True
 
-font = pygame.font.SysFont("Arial", 60)
-
+#set up clock
 clock = pygame.time.Clock()
 
+#saves current state of game in variable
 num_states = 0
 
 while running:
+    #saves current delta time in dt variable
     dt = clock.tick(60)/1000
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
+
+    #quits pygame properly if the X button on the top right of window is pressed
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-
-    # RENDER YOUR GAME HERE
+    #switches between gamestates depending on num_states
     if num_states == 0:
+        #.update() returns a number that corresponds with their num_states
+        #if game wants to switch between states, .update() returns a different number
+
+        #updates current gamestate according to menu
         num_states = menu.update()
+        #draws the corresponding gamestate
         menu.draw()
     elif num_states == 1:
+        #updates current gamestate according to phase 1
         num_states = phase_one.update()
         phase_one.draw()
-    elif num_states == 3:
-        num_states = end.update()
-        end.draw()
-    elif num_states == 4:
+        #draws the corresponding gamestate
+    elif num_states == 2:
+        #updates current gamestate according to phase 2
         num_states = phase_two.update(dt)
+        #draws the corresponding gamestate
         phase_two.draw()
-    # flip() the display to put your work on screen
+    elif num_states == 3:
+        #updates current gamestate according to end
+        num_states = end.update()
+        #draws the corresponding gamestate
+        end.draw()
+    # flip() the display to put work on screen
     pygame.display.flip()
 
+#quits pygame when game stops running
 pygame.quit()
 

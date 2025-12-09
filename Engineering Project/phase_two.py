@@ -3,9 +3,11 @@ import os
 import belay
 import random
 
+#sets current working directory to current file folder, allows this file to be run even if moving from computer to computer
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
+
 
 device = belay.Device("COM5")
 
@@ -28,7 +30,7 @@ pumptime = 0
 
 interval = 0.5
 countdown = 3
-target = random.random()
+target = random.random() * 0.8 + 0.1
 
 dial1 = pygame.image.load("assets/dial.png")
 dial2 = pygame.image.load("assets/dial.png")
@@ -183,6 +185,7 @@ for i in range(len(background)):
 cont = database.Button(50, 650, pygame.image.load("assets/button1.png"), pygame.image.load("assets/button2.png"))
 
 click = pygame.mixer.Sound("assets/click.wav")
+beat = pygame.mixer.Sound("assets/beat.wav")
 
 heart = []
 
@@ -210,6 +213,8 @@ def button_value():
     # Set up button pin as an input
     buttonPin = 14
     button = Pin(buttonPin, Pin.IN, Pin.PULL_UP)
+
+    #returns current button value
     return button.value()
 
 @device.task
@@ -218,6 +223,7 @@ def start_pump():
     # Set up heartbeat signal pin (motor)
     sig = Pin(15, Pin.OUT)
 
+    #activates motor
     sig.value(1)
 
 @device.task
@@ -226,6 +232,7 @@ def end_pump():
     # Set up heartbeat signal pin (motor)
     sig = Pin(15, Pin.OUT)
 
+    #stops motor
     sig.value(0)
 
 @device.task
@@ -238,6 +245,8 @@ def pot_value():
 
     # Calculate percentage (0-100%)
     pot_percent = pot_value / 65535
+
+    #return percentage
     return pot_percent
 
 def blitRotateCenter(surf, image, topleft, angle):
@@ -281,6 +290,7 @@ def update(delta):
                 if latest_command == 0 and not pressed:
                     if 754 < timings[0].rect.centerx < 846:
                         start_pump()
+                        beat.play()
                         pumping = True
                         health += 1
                     else:
@@ -335,14 +345,18 @@ def update(delta):
         if wait > (0.5 * (pot_value()/target)):
             pumping = True
             start_pump()
+            beat.play()
             wait = 0
         if cont.click():
+            while pot_value() - 0.2 < target < pot_value() + 0.2:
+                target = random.random() * 0.8 + 0.1
             phase += 1
             click.play()
     elif phase == 5:
         wait += delta
         if wait > (0.5 * (pot_value()/target)):
             pumping = True
+            beat.play()
             start_pump()
             wait = 0
 
@@ -364,9 +378,8 @@ def update(delta):
         if countdown < 0:
             phase = 0
             wait = 0
-            prev = target
-            while prev - 0.2 < target < prev + 0.2:
-                target = random.random()
+            while pot_value() - 0.2 < target < pot_value() + 0.2:
+                target = random.random() * 0.8 + 0.1
             countdown = 3
             intro[6][3] =  [
                 bigfont.render(f"{int(countdown + 1)}", True, (255, 255, 255)),
@@ -376,9 +389,7 @@ def update(delta):
             end_pump()
             return 3
 
-
-
-    return 4
+    return 2
 
 def draw():
     global phase
