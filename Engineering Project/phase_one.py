@@ -1,3 +1,9 @@
+"""
+Modified: 8 December 2025
+By Aaron Noh
+
+Purpose: Have the player learn the story of the game and let them diagnose the problem afflicting Grandpa.
+"""
 import pygame
 import random
 import os

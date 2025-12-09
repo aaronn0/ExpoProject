@@ -1,3 +1,9 @@
+"""
+Modified: 8 December 2025
+By Aaron Noh
+
+Purpose: Give a start screen for the player and a way to start the game.
+"""
 import pygame
 import os
 

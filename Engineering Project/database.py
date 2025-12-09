@@ -1,3 +1,9 @@
+"""
+Modified: 8 December 2025
+By Aaron Noh
+
+Purpose: Provide several helper methods and classes used in other files
+"""
 import pygame
 
 #initializes pygame

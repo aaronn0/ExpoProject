@@ -1,3 +1,9 @@
+"""
+Modified: 8 December 2025
+By Aaron Noh
+
+Purpose: Switch between different gamestates and update the pygame display to match.
+"""
 import pygame
 import os
 

@@ -1,3 +1,9 @@
+"""
+Modified: 8 December 2025
+By Aaron Noh
+
+Purpose: Give an ending screen for the player and a way to go back to the main menu
+"""
 import pygame
 import os
 
