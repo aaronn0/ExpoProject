@@ -3,6 +3,8 @@ Modified: 8 December 2025
 By Aaron Noh
 
 Purpose: Teach the player about heart pumps, have them play a game where they perform CPR on a patient, and let them "retune a heart pump" by using a potentiometer.
+
+Attributions: https://belay.readthedocs.io/en/latest/
 """
 import pygame
 import os
