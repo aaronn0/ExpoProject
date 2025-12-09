@@ -29,7 +29,7 @@ background = [
 for i in range(len(background)):
     background[i] = pygame.transform.scale(background[i], screen.get_size())
 
-#create a transparent layer
+#create a semi-transparent black layer
 trans_back = pygame.surface.Surface(screen.get_size(), pygame.SRCALPHA)
 trans_back.fill((0, 0, 0, 125))
 
@@ -329,29 +329,51 @@ def draw():
             #draws all text onto paper chart
             for i in paper_text:
                 database.blit_text(i, screen)
+
             #draws all buttons
             for i in part1_button:
                 screen.blit(i.display_image, i.rect)
+
+            #draws all black lines from table onto paper chart
             for i in table:
                 pygame.draw.rect(screen, (0, 0, 0), i)
+
+            #draws a red X corresponding to selected
             for i in range(len(selected)):
                 if selected[i]:
                     screen.blit(confirm, part1_button[i].rect)
+
+            #draws top text, bottom text, and submit text
             database.blit_text(top_text, screen)
             database.blit_text(bot_text, screen)
             database.blit_text(sub_text, screen)
+
+            #draws "Mark Here" text
             screen.blit(pygame.image.load("assets/mark.png"), mark.get_rect(center=(180, 265)))
+
+        #specific graphics for phase 4
         elif phase == 4:
+            #draws rectangles for visibility and asthetics
             pygame.draw.rect(screen, (255, 255, 255), pygame.rect.Rect(50, 50, 750, 65))
             pygame.draw.rect(screen, (0, 30, 0), pygame.rect.Rect(50, 95, 250, 110))
             pygame.draw.rect(screen, (0, 0, 30), pygame.rect.Rect(300, 95, 250, 110))
             pygame.draw.rect(screen, (30, 0, 0), pygame.rect.Rect(550, 95, 250, 110))
+
+            #draws all text onto paper chart
             for i in paper_text:
                 database.blit_text(i, screen)
-            for i in part2_text:
-                database.blit_text(i, screen)
+
+            #draws buttons for quiz
             for i in part2_button:
                 screen.blit(i.display_image, i.rect)
+
+            #draws text corresponding with buttons
+            for i in part2_text:
+                database.blit_text(i, screen)
+
+            #draws all black lines from table onto paper chart
             for i in table:
                 pygame.draw.rect(screen, (0, 0, 0), i)
+
+            #draws top text
             database.blit_text(top_text, screen)
